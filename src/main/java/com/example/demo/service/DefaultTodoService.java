@@ -4,16 +4,21 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.Todo;
+import com.example.demo.repository.DefaultTodoRepository;
 
 @Service
 public class DefaultTodoService implements TodoService {
 
+	@Autowired
+	DefaultTodoRepository todoRepository;
+	
 	@Override
 	public List<Todo> getTodoList() {
-		return new ArrayList<>(Arrays.asList(new Todo()));
+		return todoRepository.getTodoList();
 	}
 
 }
