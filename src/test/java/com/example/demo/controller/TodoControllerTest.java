@@ -2,22 +2,17 @@ package com.example.demo.controller;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -25,8 +20,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.example.demo.entity.Todo;
 import com.example.demo.service.DefaultTodoService;
-import com.example.demo.service.SpyStubTodoService;
-import com.example.demo.service.TodoService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @WebMvcTest
