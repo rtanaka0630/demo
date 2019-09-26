@@ -43,5 +43,27 @@ public class DefaultTodoServiceTest {
 		assertThat(todoService.getTodoList(), is(new ArrayList<>(Arrays.asList(expected))));
 	}
 	
+	@Test
+	public void addTodo_returns_Todo() {
+    	Todo expected = new Todo();
+    	expected.setTitle("Test");
+    	expected.setText("Test text");
+    	expected.setLimit("2019/10/31");
+    	
+		when(todoRepository.addTodo()).thenReturn(expected);
+		assertThat(todoService.addTodo(), is(expected));
+	}
+	
+	@Test
+	public void updateTodo_returns_Todo() {
+    	Todo expected = new Todo();
+    	expected.setTitle("Test");
+    	expected.setText("Test text");
+    	expected.setLimit("2019/10/31");
+    	
+		when(todoRepository.updateTodo()).thenReturn(expected);
+		assertThat(todoService.updateTodo(), is(expected));
+	}
+	
 
 }

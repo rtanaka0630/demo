@@ -23,17 +23,17 @@ public class DefaultTodoService implements TodoService {
 
 	@Override
 	public Todo addTodo() {
-		return null;
+		return todoRepository.addTodo();
 	}
 
 	@Override
 	public Todo updateTodo() {
-		return null;
+		return todoRepository.updateTodo();
 	}
 
 	@Override
 	public void deleteTodo() {
-		
+		todoRepository.deleteTodo();
 	}
 
 }

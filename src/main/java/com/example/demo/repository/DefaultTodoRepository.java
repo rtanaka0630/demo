@@ -25,5 +25,20 @@ public class DefaultTodoRepository implements TodoRepository {
 	public List<Todo> getTodoList() {
 		return new ArrayList<Todo>(todoList.values());
 	}
+
+	@Override
+	public Todo addTodo() {
+		return null;
+	}
+
+	@Override
+	public Todo updateTodo() {
+		return null;
+	}
+
+	@Override
+	public void deleteTodo() {
+		
+	}
 	
 }
