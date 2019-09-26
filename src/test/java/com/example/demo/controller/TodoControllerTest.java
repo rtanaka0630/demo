@@ -65,4 +65,47 @@ public class TodoControllerTest {
     	mockMvc.perform(MockMvcRequestBuilders.get("/Todo"))
     			.andExpect(content().json(mapper.writeValueAsString(list)));
     }
+    
+    @Test
+    public void addTodo_returns_ok() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/Todo"))
+        .andExpect(status().isOk());
+    }
+    
+    @Test
+    public void addTodo_returns_Todo() throws Exception {
+    	Todo expected = new Todo();
+    	expected.setTitle("Test");
+    	expected.setText("Test text");
+    	expected.setLimit("2019/10/31");
+    	
+    	when(todoService.addTodo()).thenReturn(expected);
+    	mockMvc.perform(MockMvcRequestBuilders.post("/Todo"))
+    			.andExpect(content().json(mapper.writeValueAsString(expected)));
+    }
+    
+    @Test
+    public void updateTodo_returns_ok() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.put("/Todo"))
+        .andExpect(status().isOk());
+    }
+    
+    @Test
+    public void updateTodo_returns_Todo() throws Exception {
+    	Todo expected = new Todo();
+    	expected.setTitle("Test");
+    	expected.setText("Test text");
+    	expected.setLimit("2019/10/31");
+    	
+    	when(todoService.updateTodo()).thenReturn(expected);
+    	mockMvc.perform(MockMvcRequestBuilders.put("/Todo"))
+    			.andExpect(content().json(mapper.writeValueAsString(expected)));
+    }
+    
+    @Test
+    public void deleteTodo_returns_ok() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/Todo"))
+        .andExpect(status().isOk());
+    }
+
 }
