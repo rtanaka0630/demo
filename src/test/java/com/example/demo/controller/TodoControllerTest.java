@@ -14,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -68,7 +69,7 @@ public class TodoControllerTest {
     
     @Test
     public void addTodo_returns_ok() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.post("/Todo"))
+		mockMvc.perform(MockMvcRequestBuilders.post("/Todo"))
         .andExpect(status().isOk());
     }
     
@@ -79,14 +80,16 @@ public class TodoControllerTest {
     	expected.setText("Test text");
     	expected.setLimit("2019/10/31");
     	
-    	when(todoService.addTodo()).thenReturn(expected);
-    	mockMvc.perform(MockMvcRequestBuilders.post("/Todo"))
+    	when(todoService.addTodo(null)).thenReturn(expected);
+    	mockMvc.perform(MockMvcRequestBuilders
+	    			.post("/Todo?key=Test")
+	    	        .contentType(MediaType.APPLICATION_JSON))
     			.andExpect(content().json(mapper.writeValueAsString(expected)));
     }
     
     @Test
     public void updateTodo_returns_ok() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.put("/Todo"))
+        mockMvc.perform(MockMvcRequestBuilders.put("/Todo?key=Test"))
         .andExpect(status().isOk());
     }
     
@@ -97,14 +100,14 @@ public class TodoControllerTest {
     	expected.setText("Test text");
     	expected.setLimit("2019/10/31");
     	
-    	when(todoService.updateTodo()).thenReturn(expected);
-    	mockMvc.perform(MockMvcRequestBuilders.put("/Todo"))
+    	when(todoService.updateTodo(null, null)).thenReturn(expected);
+    	mockMvc.perform(MockMvcRequestBuilders.put("/Todo?key=Test"))
     			.andExpect(content().json(mapper.writeValueAsString(expected)));
     }
     
     @Test
     public void deleteTodo_returns_ok() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/Todo"))
+        mockMvc.perform(MockMvcRequestBuilders.delete("/Todo?key=Test"))
         .andExpect(status().isOk());
     }
 

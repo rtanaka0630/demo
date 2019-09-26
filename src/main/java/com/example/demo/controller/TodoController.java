@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.entity.Todo;
@@ -24,18 +26,18 @@ public class TodoController {
 	}
 	
 	@PostMapping
-	public Todo addTodo() {
-		return todoService.addTodo();
+	public Todo addTodo(@RequestBody Todo todo) {
+		return todoService.addTodo(todo);
 	}
 	
-	@PutMapping
-	public Todo updateTodo() {
-		return todoService.updateTodo();
+	@PutMapping(value = "{key}")
+	public Todo updateTodo(@PathVariable("key") String key, @RequestBody Todo todo) {
+		return todoService.updateTodo(key, todo);
 	}
 	
-	@DeleteMapping
-	public void deleteTodo() {
-		todoService.deleteTodo();
+	@DeleteMapping(value = "{key}")
+	public void deleteTodo(@PathVariable("key") String key) {
+		todoService.deleteTodo(key);
 	}
 	
 }

@@ -27,18 +27,29 @@ public class DefaultTodoRepository implements TodoRepository {
 	}
 
 	@Override
-	public Todo addTodo() {
-		return null;
+	public Todo addTodo(Todo todo) {
+		todoList.put(todo.getTitle(), todo);
+		return todoList.get(todo.getTitle());
 	}
 
 	@Override
-	public Todo updateTodo() {
-		return null;
+	public Todo updateTodo(String key, Todo todo) {
+		if(todoList.containsKey(key)) {
+			todoList.put(key, todo);
+			return todoList.get(key);
+		} else {
+			// TODO
+			return null;
+		}
 	}
 
 	@Override
-	public void deleteTodo() {
-		
+	public void deleteTodo(String key) {
+		if(todoList.containsKey(key)) {
+			todoList.remove(key);
+		} else {
+			// TODO
+		}
 	}
 	
 }

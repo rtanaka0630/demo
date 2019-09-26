@@ -50,8 +50,8 @@ public class DefaultTodoServiceTest {
     	expected.setText("Test text");
     	expected.setLimit("2019/10/31");
     	
-		when(todoRepository.addTodo()).thenReturn(expected);
-		assertThat(todoService.addTodo(), is(expected));
+		when(todoRepository.addTodo(null)).thenReturn(expected);
+		assertThat(todoService.addTodo(null), is(expected));
 	}
 	
 	@Test
@@ -61,8 +61,8 @@ public class DefaultTodoServiceTest {
     	expected.setText("Test text");
     	expected.setLimit("2019/10/31");
     	
-		when(todoRepository.updateTodo()).thenReturn(expected);
-		assertThat(todoService.updateTodo(), is(expected));
+		when(todoRepository.updateTodo(null, null)).thenReturn(expected);
+		assertThat(todoService.updateTodo(null, null), is(expected));
 	}
 	
 
